@@ -1,27 +1,31 @@
-const TailorCard = ({ image, title, description }) => {
+import { useNavigate } from "react-router-dom";
+
+const TailorCard = ({
+  image,
+  title,
+  description,
+  type,
+}) => {
+  const navigate = useNavigate();
+
   return (
-    <div className="group relative h-[550px] overflow-hidden rounded-2xl cursor-pointer">
-      {/* Image */}
+    <div className="relative overflow-hidden rounded-3xl">
       <img
         src={image}
         alt={title}
-        className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+        className="h-[550px] w-full object-cover"
       />
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-t from-black/80 to-transparent" />
 
-      {/* Content */}
-      <div className="absolute bottom-0 left-0 p-6 text-white">
-        <h3 className="text-3xl font-semibold">
-          {title}
-        </h3>
+      <div className="absolute bottom-8 left-8 text-white">
+        <h2 className="text-4xl font-semibold">{title}</h2>
+        <p className="mt-4 max-w-sm">{description}</p>
 
-        <p className="mt-4 max-w-xs text-lg leading-8 text-gray-200">
-          {description}
-        </p>
-
-        <button className="mt-6 bg-[#b77739] px-8 py-4 text-sm font-semibold uppercase tracking-wide transition hover:bg-[#9d632f]">
+        <button
+          onClick={() => navigate(`/customize/${type}`)}
+          className="mt-6 rounded-full bg-[#B77739] px-8 py-3 text-white transition hover:bg-[#9b642f]"
+        >
           Start Customizing
         </button>
       </div>

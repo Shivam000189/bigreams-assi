@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Search,
   User,
@@ -8,16 +9,18 @@ import {
   X,
 } from "lucide-react";
 import Logo from "../assets/Logo.png";
+import { useCart } from "../context/useCart";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const { cartCount } = useCart();
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-gray-200 bg-white">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+    <nav className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 backdrop-blur">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         {/* Logo */}
-        <a href="/" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
             <img
                 src={Logo}
                 alt="Bigreams Logo"
@@ -25,7 +28,7 @@ const Navbar = () => {
             />
 
             {/* <span className="text-2xl font-semibold">Bigreams</span> */}
-            </a>
+            </Link>
 
         {/* Desktop Navigation */}
         <ul className="hidden  items-center gap-5 lg:flex">
@@ -53,27 +56,29 @@ const Navbar = () => {
             </button>
 
             {showDropdown && (
-              <div className="absolute left-0 top-full mt-3 w-52 rounded-md bg-white p-2 shadow-lg">
-                <a
-                  href="/"
-                  className="block rounded px-4 py-2 hover:bg-gray-100"
-                >
-                  Category 1
-                </a>
+              <div className="absolute left-0 top-full w-52 pt-3">
+                <div className="rounded-md bg-white p-2 shadow-lg">
+                  <a
+                    href="/"
+                    className="block rounded px-4 py-2 hover:bg-gray-100"
+                  >
+                    Category 1
+                  </a>
 
-                <a
-                  href="/"
-                  className="block rounded px-4 py-2 hover:bg-gray-100"
-                >
-                  Category 2
-                </a>
+                  <a
+                    href="/"
+                    className="block rounded px-4 py-2 hover:bg-gray-100"
+                  >
+                    Category 2
+                  </a>
 
-                <a
-                  href="/"
-                  className="block rounded px-4 py-2 hover:bg-gray-100"
-                >
-                  Category 3
-                </a>
+                  <a
+                    href="/"
+                    className="block rounded px-4 py-2 hover:bg-gray-100"
+                  >
+                    Category 3
+                  </a>
+                </div>
               </div>
             )}
           </li>
@@ -113,13 +118,13 @@ const Navbar = () => {
           </button>
 
           {/* Cart */}
-          <button className="relative hover:cursor-pointer">
+          <Link to="/cart" className="relative hover:cursor-pointer" aria-label="Open shopping cart">
             <ShoppingCart size={22} />
 
             <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-black text-xs text-white">
-              0
+              {cartCount}
             </span>
-          </button>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -152,13 +157,13 @@ const Navbar = () => {
                 <User />
               </button>
 
-              <button className="relative">
+              <Link to="/cart" onClick={() => setMobileOpen(false)} className="relative" aria-label="Open shopping cart">
                 <ShoppingCart />
 
                 <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-black text-xs text-white">
-                  0
+                  {cartCount}
                 </span>
-              </button>
+              </Link>
             </div>
           </div>
         </div>

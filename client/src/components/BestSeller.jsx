@@ -1,4 +1,5 @@
 import ProductCard from "./ProductCard";
+import { useCart } from "../context/useCart";
 
 import fabric1 from "../assets/fabric1.jpg";
 import fabric2 from "../assets/fabric2.jpg";
@@ -7,6 +8,7 @@ import fabric4 from "../assets/fabric4.avif";
 
 const products = [
   {
+    id: "tartan-red-checkered-fabric",
     image: fabric1,
     title: "Unstitched Tartan Red Checkered Fabric",
     price: 289,
@@ -15,6 +17,7 @@ const products = [
     hot: true,
   },
   {
+    id: "black-twill-pants-fabric",
     image: fabric2,
     title: "Black Wrinkle Free Stretchable Twill Pants Fabric",
     price: 399,
@@ -22,6 +25,7 @@ const products = [
     discount: "-28%",
   },
   {
+    id: "brown-herringbone-blazer-fabric",
     image: fabric3,
     title: "Brown Herringbone Wool Blazer Fabric",
     price: 699,
@@ -29,6 +33,7 @@ const products = [
     discount: "-29%",
   },
   {
+    id: "beige-stretchable-pants-fabric",
     image: fabric4,
     title: "Beige Stretchable Pants Fabric",
     price: 399,
@@ -38,6 +43,8 @@ const products = [
 ];
 
 const BestSeller = () => {
+  const { addToCart } = useCart();
+
   return (
     <section className="py-24">
       <div className="mx-auto max-w-[1250px] px-6">
@@ -47,8 +54,12 @@ const BestSeller = () => {
         </h2>
 
         <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
-          {products.map((product, index) => (
-            <ProductCard key={index} {...product} />
+          {products.map((product) => (
+            <ProductCard
+              key={product.id}
+              {...product}
+              onAddToCart={() => addToCart(product)}
+            />
           ))}
         </div>
 

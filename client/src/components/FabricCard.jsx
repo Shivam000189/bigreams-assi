@@ -1,4 +1,4 @@
-const TailorCard = ({ image, title, description }) => {
+const FabricCard = ({ image, title, description, onShopNow }) => {
   return (
     <div className="group relative h-[400px] cursor-pointer overflow-hidden rounded-2xl">
       {/* Image */}
@@ -22,6 +22,9 @@ const TailorCard = ({ image, title, description }) => {
 
         {/* Hidden Button */}
         <button
+          type="button"
+          onClick={onShopNow}
+          aria-label={`View details for ${title}`}
           className="
             mt-6
             translate-y-8
@@ -47,4 +50,4 @@ const TailorCard = ({ image, title, description }) => {
   );
 };
 
-export default TailorCard;
+export default FabricCard;

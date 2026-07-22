@@ -1,39 +1,23 @@
-import './App.css'
-import CustomizeCTA from './components/CustomizeCTA'
-import BestSeller from './components/BestSeller'
-import FabricCategories from './components/FabricCategories'
-import Hero from './components/Hero'
-import Navbar from './components/Navbar'
-import Offer from './components/Offer'
-import ReadyToWear from './components/ReadyToWear'
-import TailorMade from './components/TailorMade'
-import Testimonials from './components/Testimonials'
-import LatestBlogs from './components/LatestBlogs'
-// import AnimalCare from './components/AnimalCare'
-import EcoAndAnimal from './components/EcoAndAnimal'
-import FAQ from './components/FAQ'
-import Footer from './components/Footer'
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Customize from "./pages/Customize";
+import Cart from "./pages/Cart";
 
 function App() {
-
   return (
     <>
       <Navbar />
-      <Hero />
-      <Offer />
-      <TailorMade />
-      <FabricCategories />
-      <BestSeller />
-      <ReadyToWear />
-      <Testimonials />
-      <CustomizeCTA />
-      <LatestBlogs />
-      {/* <AnimalCare /> */}
-      <EcoAndAnimal />
-      <FAQ />
-      <Footer />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/customize/:type" element={<Customize />} />
+        <Route path="/cart" element={<Cart />} />
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

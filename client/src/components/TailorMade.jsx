@@ -17,18 +17,21 @@ const TailorMade = () => {
 
           <TailorCard
             image={suit}
+            type="suit"
             title="Custom Suits"
             description="A suit stitched to your measurements—look confident, feel comfortable."
           />
 
           <TailorCard
             image={shirt}
+            type="shirt"
             title="Custom Shirts"
             description="Made just for you with premium fabrics and a flawless fit."
           />
 
           <TailorCard
             image={pants}
+            type="pants"
             title="Custom Pants"
             description="Tailored to your exact size for all-day comfort and a sharp look."
           />
